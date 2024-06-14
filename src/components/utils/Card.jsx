@@ -2,10 +2,14 @@ import {
   IoArrowBackCircle as Back,
   IoArrowForwardCircle as Next,
 } from "react-icons/io5";
+import {
+  FaCircle as CircleFull,
+  FaRegCircle as CircleEmpty,
+} from "react-icons/fa";
 
-const Card = ({ post, prevPost, nextPost }) => {
+const Card = ({ post, prevPost, nextPost, posts, currentPost, clickPost }) => {
   return (
-    <>
+    <div className="flexColumn">
       <div className="flex">
         <Back className="icon" onClick={prevPost} />
         <div>
@@ -13,9 +17,15 @@ const Card = ({ post, prevPost, nextPost }) => {
           <h2 className="title">{post.title}</h2>
         </div>
         <Next className="icon" onClick={nextPost} />
-        {console.log(post)}
       </div>
-    </>
+      <div className="flex">
+        {posts.map((_, index) => (
+          <span key={index} onClick={() => clickPost(index)}>
+            {index === currentPost ? <CircleFull /> : <CircleEmpty />}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 };
 

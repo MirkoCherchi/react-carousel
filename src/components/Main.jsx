@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { posts } from "../../postsCarousel";
 import Card from "./utils/Card";
-import { useState } from "react";
 
 const Main = () => {
   const [currentPost, setCurrentPost] = useState(0);
@@ -17,8 +17,21 @@ const Main = () => {
     );
   };
 
+  const clickPost = (index) => {
+    setCurrentPost(index);
+  };
+
   return (
-    <Card post={posts[currentPost]} prevPost={prevPost} nextPost={nextPost} />
+    <div className="carousel-container">
+      <Card
+        post={posts[currentPost]}
+        prevPost={prevPost}
+        nextPost={nextPost}
+        posts={posts}
+        currentPost={currentPost}
+        clickPost={clickPost}
+      />
+    </div>
   );
 };
 
